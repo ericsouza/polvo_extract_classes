@@ -1,6 +1,6 @@
 import PyPDF2
 import re
-import firebase_python
+import polvo_firebase_connection as pfc
 import json
 import helpers
 
@@ -172,7 +172,8 @@ def get_class_from_index(raw_list, indexes_list, index, aulas_com_ra_list):
         except:
             pass
         try:    
-            docente_pratica = docentes_list[1]
+            if ' ' in docentes_list[1]:
+                docente_pratica = docentes_list[1]
         except:
             pass
 
@@ -238,17 +239,8 @@ def treat_aulas(input, output):
         
         helpers.append_result_json(materia_dict)
 
-        #firebase_python.add_materia(materia_dict)
+        #pfc.add_materia(materia_dict)
     
-    """
-    for i in range(len(indexes)):
-        all_lines[indexes[i]]
-    
-
-
-    with open(output, 'w', encoding='utf-8') as file:
-        file.writelines(indexes)
-    """
 
 #extract_text_from_pdf('deferidas.pdf', 'deferidas.txt')
 
@@ -259,6 +251,6 @@ def treat_aulas(input, output):
 
 #clean_page_header('turmas_raw.txt', 'turmas.txt')
 
-#treat_aulas('turmas.txt', 'treated_aulas.txt')
+treat_aulas('turmas.txt', 'treated_aulas.txt')
 #treat_aulas('turmas_cleaned_header_debugging.txt', 'treated_aulas.txt')
 
