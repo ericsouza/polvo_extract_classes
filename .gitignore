@@ -1,6 +1,8 @@
 *.txt
 *.json
 *.pdf
+*.xlsx
+*.xls
 /.vscode
 /__pycache__
 /venv
